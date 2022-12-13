@@ -1,12 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { Provider } from "react-redux";//որպեսզի օգտագործենք մենք պետք է փաթեթավորենք մեր հավելվածը Provider(մատակարար)-ով, դրա համար իմփորթ ենք անում Provider-ը
+import { store, persistor } from "./redux/store";
+ import { PersistGate } from 'redux-persist/integration/react'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+   // ??? Provider
+<Provider store={store}>
+  {/* PersistGate-ը վերցրել ենք Persist-ից */}
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>,
+  document.getElementById("root")
 );
 
 
