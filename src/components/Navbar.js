@@ -122,6 +122,7 @@ const Navbar = () => {
   return Object.keys(obj).length === 0;
 }
 const user = useSelector((state) => state.user.currentUser)// ***
+//const user = {name: "admin"}
 console.log(user,"user")
 const handleClick = (e) => {
   e.preventDefault();

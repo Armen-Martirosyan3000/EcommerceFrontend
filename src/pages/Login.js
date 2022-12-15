@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
+import Navbar from '../components/Navbar';
+import Footer from "../components/Footer";
+import Announcement from '../components/Announcement';
 
 //Մուտք գործելու, լոգին լինելու էջն է
 const Container = styled.div`
@@ -90,6 +93,9 @@ const Login = () => {
     login(dispatch, { username, password });//այստեղ մենք կանչում ենք  login ֆունկցիան apiCalls.js-ից և սահմանում ենք այդ ուղարկում որը հանդիսանում է username-ը ու password-ը
   };
   return (
+    <div>
+    <Navbar/>
+    <Announcement/>
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
@@ -115,6 +121,8 @@ const Login = () => {
         </Form>
       </Wrapper>
     </Container>
+    <Footer/>
+    </div>
   );
 };
 

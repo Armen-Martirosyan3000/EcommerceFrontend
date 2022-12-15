@@ -5,7 +5,10 @@ const BASE_URL = "http://localhost:9000/api/";
 // իհարկե մենք սա արեցինք ձեռքով(token-ի պահը), բայց մուտք գործելուց հետո redux-ն օգտագործելուց հետո մենք դա կվերցնենք localStorage-ից ու կտեղադրենք այստեղ
 
 
-const TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTVlZmE1YmU3ZWNlOTA4MGY4ZjZjNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NzA3NzA2NjIsImV4cCI6MTY3MTAyOTg2Mn0.Q0Z4Be37dnuQFDPPQS8PZOwbGD0n0zjdSEqto_xeLOI";
+// const TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTVlZmE1YmU3ZWNlOTA4MGY4ZjZjNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NzA3NzA2NjIsImV4cCI6MTY3MTAyOTg2Mn0.Q0Z4Be37dnuQFDPPQS8PZOwbGD0n0zjdSEqto_xeLOI";
+const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+const currentUser = user && JSON.parse(user).currentUser;
+const TOKEN = currentUser?.accessToken;
 
 
 //սա մեր հրապարակային հարցումն է

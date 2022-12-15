@@ -18,18 +18,37 @@ const cartSlice = createSlice({
   reducers: {//առաջին reducer-ը որ օգտագործում ենք ,այն կավելացնի ապրանքներ(addProduct) մեր զամբյուղում(cart)
     
     addProduct: (state, action) => {//??? state-ի ու action-ի մեջ ինչն է գալիս մտնում որպես պարամետր ու որտեղից 
-      state.quantity += 1;//սրանով թարմացվում է մեր state,քանակը(quantity) կավելացվի +1։ Երբ որ մենք սեղմենք 1 ապրանքի էջի ADD TO CART կնոպկան մենք կավելացնենք մեչ էկրանի վերևի աջ անկյունում գտնվող զամյուղի(կապույտ թիվ) թիվը, դրանից հետո մենք կթարմացնենք մեր ապրանքները
+      //state.quantity += 1;//սրանով թարմացվում է մեր state,քանակը(quantity) կավելացվի +1։ Երբ որ մենք սեղմենք 1 ապրանքի էջի ADD TO CART կնոպկան մենք կավելացնենք մեչ էկրանի վերևի աջ անկյունում գտնվող զամյուղի(կապույտ թիվ) թիվը, դրանից հետո մենք կթարմացնենք մեր ապրանքները
       //այս՝state.quantity-ը պետք չէ խառնել այս՝action.payload.quantity քանակի հետ, սա՝state.quantity զամբյուղի քանակի թիվն է որը ավելացվում է ADD TO CART կնոպկայով, իսկ action.payload.quantity-ն ապրանքների քանակն է որը ավելացվում կամ պակասեցվում է + - կնոպկաներով
       //state.products.push(action.payload) ???, ??? payload-ը որտեղից է գալիս
-	  
-      state.products.push(action.payload);//այստեղով իրականացվում է մեր ապրանքների թարմացումը, payload-ը մեր մեր նոր ապրանքն է
-      state.total += action.payload.price * action.payload.quantity;// այստեղով սահմանվում է ընդհանուր ապրանքների գումարը(total), որը ավելացնում ենք կրկին՝ ապրանքի գինը(action.payload.price) բազմապատկելով
-    //եթե մենք օգտագործենք մաքուր redux մենք չենք կարող փոխել մեր state-ն այս տարբերակով
+	  console.log(action.payload,5555)
+      //state.products.push(action.payload);//այստեղով իրականացվում է մեր ապրանքների թարմացումը, payload-ը մեր մեր նոր ապրանքն է
+      //state.total += action.payload.price * action.payload.quantity;// այստեղով սահմանվում է ընդհանուր ապրանքների գումարը(total), որը ավելացնում ենք կրկին՝ ապրանքի գինը(action.payload.price) բազմապատկելով
+      if (!state.products.some((product) => product._id === action.payload._id)) {
+        console.log(state.products,1111111111111)
+        state.products.push(action.payload)
+        state.quantity += 1
+      } 
+      else {
+     // const changedProduct = state.products.find((product) => product._id === action.payload._id)
+     state.products=state.products.map(item=> item._id === action.payload._id ? {...item,quantity:action.payload.quantity} : item)
+      }
+      console.log(action.payload.quantity,777)
+      console.log(action.payload.price,888)
+      //console.log(state.total,999)
+
+     
+      //state.total+=state.products.map(item=> item._id === action.payload._id ? {price:action.payload.price * action.payload.quantity}: item)
+      state.total += action.payload.price * action.payload.quantity;
+      console.log(state.total,999)
+
+      //եթե մենք օգտագործենք մաքուր redux մենք չենք կարող փոխել մեր state-ն այս տարբերակով
 	},
    deleteProduct: (state, action) => {//??? state-ի ու action-ի մեջ ինչն է գալիս մտնում որպես պարամետր ու որտեղից 
-    state.quantity -= 1;
-  
-    state.products.pull(action.payload);//այստեղով իրականացվում է մեր ապրանքների թարմացումը, payload-ը մեր մեր նոր ապրանքն է
+   state.quantity -= 1;
+    console.log( state.products, action)
+   state.products=state.products.filter((item)=>item._id !== action.payload);//այստեղով իրականացվում է մեր ապրանքների թարմացումը, payload-ը մեր մեր նոր ապրանքն է
+    
     state.total -= action.payload.price * action.payload.quantity;
 },
   },

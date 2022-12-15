@@ -27,16 +27,16 @@ export const logout = async (dispatch, user) => {
   dispatch(logoutStart());
 };
 
-export const addCart = async (dispatch, cart) => {
+// export const addCart = async (dispatch, cart) => {
 
-  try {
-    const res = await publicRequest.post("/carts", cart);
-   console.log(res)
-  } catch (err) {
-    //res.status(401).json("Wrong credentials")
-  }
-  dispatch(addProduct());
-};
+//   try {
+//     const res = await publicRequest.post("/carts", cart);
+//    console.log(res)
+//   } catch (err) {
+//     //res.status(401).json("Wrong credentials")
+//   }
+//   dispatch(addProduct());
+// };
 
 // export const deleteCart = async (dispatch, cart) => {
 //   dispatch(deleteProduct());

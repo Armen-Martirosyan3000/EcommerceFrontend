@@ -8,9 +8,9 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
  import { useEffect, useState } from "react";
  import { publicRequest } from "../requestMethods";// տվյալների ստանալու համար մենք կօգտագործենք  publicRequest-ը, որովհետև ցանկացած ապրանքի ստացման համար մեզ պետք չի լինել յուզեռ(օգտագործող) կամ ADMIN դրա համար publicRequest-ը կտեղադրենք ներքևում
- //import { addProduct } from "../redux/cartRedux";//մենք այստեղով կանչում ենք մեր addProduct action-ը որտեղից կտանք ապրանքները(action.payload.product) և արժեքը(action.payload.price) որպես payload։ Այդ պրոցեսը երևում է handleClick ֆունկցիայում
+import { addProduct } from "../redux/cartRedux";//մենք այստեղով կանչում ենք մեր addProduct action-ը որտեղից կտանք ապրանքները(action.payload.product) և արժեքը(action.payload.price) որպես payload։ Այդ պրոցեսը երևում է handleClick ֆունկցիայում
 import { useDispatch } from "react-redux";
-import { addCart} from "../redux/apiCalls";
+//import { addCart} from "../redux/apiCalls";
 
 
 //սա 1 ապրանքի էջն է, երբ մկնիկը պահում ենք տվյալ ապրանքի վրա ու սեղմում ենք խոշորացույցի վրա տեղափոխվում ենք այս էջ
@@ -165,11 +165,17 @@ const Product = () => {
   };
 
   const handleClick = () => {
+    dispatch(
+      addProduct({ ...product, quantity, color, size })
+    );
+  };
+
+  // const handleClick = () => {
     
      
-     addCart(dispatch,{ ...product, quantity, color, size })//այստեղով մենք կանչում ենք addProduct-ը(cartRedux-ից) և ուղարկում ենք Cart.js ամբողջ ինֆորմացիան մեր ապրանքի մասին (...product) ինչպես նաև նրա քանակը գույնը և չափսը(quantity, color,size )
-    //   addProduct({ ...product, quantity, color, size })
-  };
+  //    //addCart(dispatch,{ ...product, quantity, color, size })//այստեղով մենք կանչում ենք addProduct-ը(cartRedux-ից) և ուղարկում ենք Cart.js ամբողջ ինֆորմացիան մեր ապրանքի մասին (...product) ինչպես նաև նրա քանակը գույնը և չափսը(quantity, color,size )
+  //   //   addProduct({ ...product, quantity, color, size })
+  // };
 
   // const handleClickAdd = (e) => {
   //   e.preventDefault();

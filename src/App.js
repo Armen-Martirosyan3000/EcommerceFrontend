@@ -24,6 +24,7 @@ const App = () => {
   // return <Cart/>;
   //Սրանով մենք թարմացնում ենք մեր user-ին դրա համար մենք կօգտագործենք useSelector, վերցնում ենք state-ը ու ընտրում ենք ընթացիկ յուզեռին՝ currentUser
   const user = useSelector((state) => state.user.currentUser);// useSelector Գործառույթ է, որն ընդունում է ներկայիս վիճակը(state) որպես արգումենտ և վերադարձնում է նրանից ինչ տվյալներ եք ուզում:
+  // const user = {name: "admin"}
   console.log(user)
           
   const isEmpty=function (obj) { // *** 

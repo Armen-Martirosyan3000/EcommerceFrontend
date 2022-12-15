@@ -3,6 +3,9 @@ import { mobile } from "../responsive";
 import { register } from "../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import Navbar from '../components/Navbar';
+  import Footer from "../components/Footer";
+  import Announcement from '../components/Announcement';
 
 //գրանցվելու, ռեգիստրացիա լինելու էջն է
 //background: linear-gradient-ը խամրացրել է նկարը, քանի որ linear-gradient է դրա համար առնվազն 2 գույն պետք է նշվի, տվյալ դեքում ես 2-նել նույն գույնն եմ դրել
@@ -77,12 +80,16 @@ const Register = () => {
   const [confirmpassword, setConfirmpassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
+  
 
   const handleClick = (e) => {
     e.preventDefault();
     register(dispatch, { username, password,name,lastname,email,confirmpassword, });
   };
   return (
+    <div>
+    <Navbar/>
+    <Announcement/>
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
@@ -91,7 +98,7 @@ const Register = () => {
           <Input  onChange={(e) => setName(e.target.value)} placeholder="name" />
           <Input onChange={(e) => setLastname(e.target.value)} placeholder="last name" />
           <Input onChange={(e) => setUsername(e.target.value)} placeholder="username" />
-          <Input onChange={(e) => setEmail(e.target.value)} placeholder="email" />
+          <Input onChange={(e) => setEmail(e.target.value)} placeholder="email" type="email" name="email"/>
           <Input onChange={(e) => setPassword(e.target.value)} placeholder="password" type="password"/>
           <Input onChange={(e) => setConfirmpassword(e.target.value)} placeholder="confirm password" type="password"/>
           <Agreement>
@@ -103,6 +110,8 @@ const Register = () => {
         </Form>
       </Wrapper>
     </Container>
+    <Footer/>
+    </div>
   );
 };
 

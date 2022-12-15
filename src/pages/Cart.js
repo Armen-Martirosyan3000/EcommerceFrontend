@@ -201,13 +201,14 @@ const Cart = () => {
    const onToken = (token) => {//այստեղ մենք ստեղծում ենք մեր onToken ֆունկցիան, որը ներքևում՝StripeCheckout-ում օգտագործում ենք, այն ընդունում է token և
     setStripeToken(token);// այստեղ սահմանենք(ուստանովկա անենք) մեր token-ը,setStripeToken-ը մեր useState-ով սահմանած ֆունկցիան է
   };
-console.log(stripeToken)
+//console.log(stripeToken)
 
-const handleClick = () => {
-    
-  dispatch(//dispatch-ով առաքում ենք
-  deleteProduct()//այստեղով մենք կանչում ենք addProduct-ը(cartRedux-ից) և ուղարկում ենք Cart.js ամբողջ ինֆորմացիան մեր ապրանքի մասին (...product) ինչպես նաև նրա քանակը գույնը և չափսը(quantity, color,size )
- //   addProduct({ ...product, quantity, color, size })
+
+const handleClick = (id) => {
+   console.log(id,555) 
+  dispatch(
+  deleteProduct(id)
+
 
   );
 };
@@ -279,7 +280,9 @@ const handleClick = () => {
                   <ProductAmount>{product.quantity}</ProductAmount>
                   {/* Remove-ը UI-ի - icon-ի անունն է */}
                   <MinimizeTwoTone />
-                  <DeleteForeverOutlined onClick={handleClick}/>
+
+                  <DeleteForeverOutlined onClick={()=>handleClick(product._id)}/>
+                  
                   </ProductAmountContainer>
                   <ProductPrice>
                     $ {product.price * product.quantity}

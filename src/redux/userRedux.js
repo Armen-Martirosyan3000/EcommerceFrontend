@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    currentUser: null,//ընթացիկ յուզեռը սկզբում 0 է
+    currentUser: {},//ընթացիկ յուզեռը սկզբում 0 է
     isFetching: false,
     error: false,
   },

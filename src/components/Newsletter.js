@@ -1,6 +1,10 @@
 import { Send } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import React, { useState } from 'react';
+import Alert from 'react-bootstrap/Alert'
+
+
 
 //սա ներքևի Product newsletter-ի ընդհանուր բաժինն է այստեղ
 //fcf5f5
@@ -57,20 +61,57 @@ const Button = styled.button`
 `;
 
 const Newsletter = () => {
+  const [email, setEmail] = useState("");
+    // console.log(email,555)
+
+  const [show, setShow] = useState(false);
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }, body: JSON.stringify({
+        email
+      })
+    });
+
+    const data = await res.json();
+    console.log(data)
+    if (data.status === 401 || !data) {
+      console.log("error")
+    } else {
+      console.log("Email sent");
+      setShow(true);
+      setEmail("")
+    }
+  }
+
   return (
+    <>
+       {
+          show ? <Alert variant="primary" onClose={() => setShow(false)} dismissible>
+            <Alert.Heading> Email Sent Successfully</Alert.Heading>
+           
+          </Alert> : ""
+    }
+
     <Container>
       <Title>Newsletter</Title>
       <Desc>Get regular updates from your favorite products</Desc>
       <InputContainer>
 	 
-        <Input placeholder="Your email"  />
+        <Input placeholder="Your email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}  />
 		{/* <Focus/> */}
-        <Button>
-	{/* սա վերցված է UI մատերալից, Send-ը icon-ի անունն է */}
-          <Send />
-        </Button>
+        <Button type="submit" onClick={sendEmail}>
+	{/* սա վերցված է UI մատերալից, Send-ը icon-ի անունն է onClick={handleClick} */}
+          <Send  />
+        </Button >
       </InputContainer>
     </Container>
+    </>
   );
 };
 
