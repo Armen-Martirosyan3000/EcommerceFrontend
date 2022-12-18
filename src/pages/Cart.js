@@ -1,22 +1,24 @@
-import { Add, Remove,DeleteForeverOutlined,MinimizeTwoTone } from "@material-ui/icons";
+// Add, Remove,
+import { DeleteForeverOutlined, MinimizeTwoTone } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
- import StripeCheckout from "react-stripe-checkout";
- import { useEffect, useState } from "react";
- import { userRequest } from "../requestMethods";
-// import { useHistory } from "react-router";
- import { useNavigate } from "react-router-dom";
- import { Link } from "react-router-dom";
- import { deleteProduct } from "../redux/cartRedux";
- import { useDispatch } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import { useEffect, useState } from "react";
+import { userRequest } from "../requestMethods";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { deleteProduct, resetCart } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
+
+
+//Shopping cart page
 
 const KEY = process.env.REACT_APP_STRIPE;
 
-//Սա զամբյուղի ընդհանուր էջն է
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -24,12 +26,11 @@ const Wrapper = styled.div`
   ${mobile({ padding: "10px" })}
 `;
 
-
 const Title = styled.h1`
   font-weight: 400;
   text-align: center;
 `;
-//Top-ի մեջ մտնում են՝TopButton-ը, TopTexts-ը, TopText-ը
+
 const Top = styled.div`
   display: flex;
   align-items: center;
@@ -37,9 +38,6 @@ const Top = styled.div`
   padding: 20px;
 `;
 
-//filled նշանակում է լրացված:border: ${(props) Սա նշանակում է եթե ներքևից բաթընին փոխանցվող type-ը "filled" է՝ props.type === "filled" ապա border-ը none է այսինքն border չկա 
-//background-color: ${(props)-ը նշանակում է եթե(?) բաթընի թայփը filled է ապա բաթընի բեքգրաունդ քոլորը սև է իսկ եթե դա այդպես չէ(:) "transparent"( թափանցիկ), դրա համար CHECKOUT NOW կնոպկայի բեքգրաունդը սև է(քանի որ իր թայփը "filled" է) իսկ CONTINUE SHOPPING-ի բեքգրաունդը թափանցիկ է
-//color: ${(props)-ով սահմանում է որ եթե բաթընի type filled է ապա color-ը սպիտակ է
 const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
@@ -53,7 +51,6 @@ const TopButton = styled.button`
 // ${mobile({ display: "none" })}
 // `;
 
-
 // const TopText = styled.span`
 //   text-decoration: underline;
 //   cursor: pointer;
@@ -66,32 +63,25 @@ const Bottom = styled.div`
   ${mobile({ flexDirection: "column" })}
 `;
 
-
 const Info = styled.div`
   flex: 3;
 `;
 
-//Product-ը յուրաքանչյուր ապրանքի գծով կոնտեյներն է
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
   ${mobile({ flexDirection: "column" })}
 `;
 
-
-// ProductDetail-ի մեջ Ապրանքի մանրամասններն են
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
 `;
-//ապրանքի նկարն է
+
 const Image = styled.img`
   width: 200px;
 `;
 
-//Details-ապրանքի մանրամասներն են, որի մեջ չկա նկարը
-//flex-direction:column; սա սահմանում է , թե ինչպես են flex տարրերը տեղադրվում flex կոնտեյներով, որոնք սահմանում են հիմնական առանցքը և ուղղությունը, տվյալ դեպքում տարրերի ուղղությունը(direction) դասավորվում է ուղղահայաց
-//justify-content հատկությունը սահմանում է, թե ինչպես է բրաուզերը տարածություն բաշխում բովանդակության տարրերի միջև և շուրջը ճկուն կոնտեյների հիմնական առանցքի և ցանցային կոնտեյների ներկառուցված առանցքի երկայնքով : space-around-ի դեպքում տարրերը ունեն կիսով չափ տարածություն երկու ծայրերում
 const Details = styled.div`
   padding: 20px;
   display: flex;
@@ -103,8 +93,6 @@ const ProductName = styled.span``;
 
 const ProductId = styled.span``;
 
-// ProductColor-ը սահմանում է տվյալ ապրանքի գույնը, կլորակի մեջ որ երևում է 
-//(props)-ով տրվում է տվյալ ապրանքին իր գույնը
 const ProductColor = styled.div`
   width: 20px;
   height: 20px;
@@ -114,7 +102,6 @@ const ProductColor = styled.div`
 
 const ProductSize = styled.span``;
 
-//PriceDetail-Գին Մանրամասն-ի մեջ մտնում է +-ի -ի նշանները և ապրանքի արժեքը
 const PriceDetail = styled.div`
   flex: 1;
   display: flex;
@@ -122,37 +109,30 @@ const PriceDetail = styled.div`
   align-items: center;
   justify-content: center;
 `;
-//</ProductAmountContainer>-ի մեջ մտնում է +ը -ը և քանակը,Amount-Գումարը
+
 const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 `;
 
-//ապրանքի քանակն է ցույց տալի
 const ProductAmount = styled.div`
   font-size: 24px;
-  margin: 5px;
-  
+  margin: 5px;  
 `;
-//${mobile({ margin: "5px 15px" })}
 
-//սա ապրանքի արժեքն է
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
   ${mobile({ marginBottom: "20px" })}
 `;
 
-
-//ապրանքները տարանջատող գիծն է
 const Hr = styled.hr`
   background-color: #eee;
   border: none;
   height: 1px;
 `;
 
-//Summary(ամփոփում)-ին ընդհանուր կոնտեյներն է որով սահմանվում է, ORDER SUMMARY պատուհանի ընդհանուր դիզայնը՝ պատուհանւ բարձրություն, բորդերը և այլն
 const Summary = styled.div`
   flex: 1;
   border: 0.5px solid lightgray;
@@ -164,9 +144,7 @@ const Summary = styled.div`
 const SummaryTitle = styled.h1`
   font-weight: 300;
 `;
-// առանձին SummaryItem-ների մեջ տեղադրված են ՝ Subtotal, Estimated Shipping, Shipping Discount բաժինները
-//font-weight: ${(props)-ի միջոցով սահմանվել է որ total թայփ ունեցող SummaryItem-ը մուգ լինի, դա՝Total $175 տողն է
-//font-size: ${(props)-ի միջոցով սահմանվել է որ total թայփ ունեցող SummaryItem-ը 24px լինի, դա՝Total $175 տողն է
+
 const SummaryItem = styled.div`
   margin: 30px 0px;
   display: flex;
@@ -179,7 +157,6 @@ const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
 
-//Summary-ի մեջի Button է
 const Button = styled.button`
   width: 100%;
   padding: 10px;
@@ -191,70 +168,55 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);//սրանով՝ state.cart վերադարձվում է cart-ը, որից հետո մենք կարող ենք օգտագործել մեր ապրանքները մեր info կոնտեյների մեջ
-   const [stripeToken, setStripeToken] = useState(null);//սկզբնական արժեքը null է, այսինքն առկա չէ
-   const dispatch = useDispatch();
-   //const history = useHistory();//Կեռիկը useHistoryմեզ թույլ է տալիս մուտք գործել React Router-ի պատմության(history) օբյեկտ:Պատմության օբյեկտի(history) միջոցով մենք կարող ենք մուտք գործել և շահարկել(manipulate) բրաուզերի պատմության(history) ներկա վիճակը:UseHistory() կեռիկը թույլ է տալիս մուտք գործել պատմության օրինակ(history instance) React Router-ի միջոցով, և դա լավ պատճառով հայտնի կեռիկ է: Օգտագործելով պատմության օրինակը(history instance), դուք կարող եք հեշտությամբ վերահղել օգտվողներին ցանկացած ֆունկցիոնալ բաղադրիչից ձեր ընտրած էջին: Այս hook-ը հնարավորություն է տալիս մուտք գործել դեպի React-ի գրառումը, թե որտեղ է եղել օգտատերը, և այն հնարավորություն է տալիս սահմանել, թե ուր նրանք կգնան հաջորդը: Վերջինիս կարելի է հասնել՝ օգտագործելով history.push. Օրինակ, հաջող մուտք գործելուց հետո դուք կարող եք նավարկել դեպի գլխավոր էջ կամ օգտվողի պրոֆիլ
-   
-   const navigate = useNavigate()
-  
-   const onToken = (token) => {//այստեղ մենք ստեղծում ենք մեր onToken ֆունկցիան, որը ներքևում՝StripeCheckout-ում օգտագործում ենք, այն ընդունում է token և
-    setStripeToken(token);// այստեղ սահմանենք(ուստանովկա անենք) մեր token-ը,setStripeToken-ը մեր useState-ով սահմանած ֆունկցիան է
+  const cart = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const onToken = (token) => {
+    console.log("onToken")
+    setStripeToken(token);
+    dispatch(resetCart())
   };
-//console.log(stripeToken)
 
+  const handleClick = (id) => {
+    dispatch(
+      deleteProduct(id)
+    );
+  };
 
-const handleClick = (id) => {
-   console.log(id,555) 
-  dispatch(
-  deleteProduct(id)
-
-
-  );
-};
-
-
-
-//այստեղով ստեղծում ենք ձևակերպումը և վճարումը։ Տոկենի ստացումից հետո՝ setStripeToken(token), ստեղծենք useEffect
   useEffect(() => {
-    const makeRequest = async () => {//makeRequest(կատարել հարցում)
+    const makeRequest = async () => {
       try {
-        await userRequest.post("/checkout/payment", {//userRequest-ը գալիս է requestMethods.js-ից(բեքենդում stripe-ի path-ը payment(վճարում) է)
-          tokenId: stripeToken.id,//այստեղով ուղարկում ենք stripeToken-ի id-ն։ Մեր պատասխանից հետո մենք կտեղափոխվենք մեր պատվերների(order) էջ կամ success(հաջողության) էջ։Որպեսզի դա անենք մենք կօգտագործենք useHistory()(պատմություն) հուկը
-          amount: cart.total*100,
+        await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: cart.total * 100,
         });
-       // history.push("/success", {data: res.data });
-        // navigate("/success", {data: res.data });
-      } catch {}
+      } catch { }
     };
-    stripeToken && cart.total>=1 && makeRequest();
-  }, [stripeToken, cart.total,navigate]);//useEffect-ի կախվածությունը(դիփենդեսի) կլինի մեր տոկենը՝ stripeToken
+    stripeToken && cart.total >= 1 && makeRequest();
+  }, [stripeToken, cart.total, navigate]);
+  
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
-        <Title>YOUR BAG</Title>   
+        <Title>YOUR BAG</Title>
         <Top>
-        <Link to={"/"} style={{textDecoration: 'none'}}>
-          <TopButton >CONTINUE SHOPPING</TopButton>
-          </Link> 
+          <Link to={"/"} style={{ textDecoration: 'none' }}>
+            <TopButton >CONTINUE SHOPPING</TopButton>
+          </Link>
           {/* <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts> */}
-		  {/* filled նշանակում է լրացված, սա որ դնում ենք կնոպկայի բեքգրաունդը սև է դառնում */}
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
-		{/* Info-ն զամբյուղում(cart) ապրանքների ընդհանուր կոնտեյներն է */}
           <Info>
-
-
-          {cart.products.map((product) => (//քարտի միջի ապրանքների զանգվածի(բեքենդում երևում է car մոդելում առկա products զանգվածը) վրայով map ենք անում և վերադարձնում ենք <Product> կոնտեյներում եղած ինֆորմացիան ապրանքի մասին՝img, title, _id, color, size
-              //  <Slide bg={item.bg} key={item.id}></Slide>
-             // ***
-             <Product key={product.id}>
+            {cart.products.map((product) => (
+              <Product key={product._id}>
                 <ProductDetail >
                   <Image src={product.img} />
                   <Details>
@@ -269,20 +231,15 @@ const handleClick = (id) => {
                       <b>Size:</b> {product.size}
                     </ProductSize>
                   </Details>
-                
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                {/* Add -ը UI-ի + icon-ի անունն է */}
-                  {/* <Add /> */}
-                  {/* <Remove /> */}
-                  <MinimizeTwoTone />
-                  <ProductAmount>{product.quantity}</ProductAmount>
-                  {/* Remove-ը UI-ի - icon-ի անունն է */}
-                  <MinimizeTwoTone />
-
-                  <DeleteForeverOutlined onClick={()=>handleClick(product._id)}/>
-                  
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmountContainer>
+                    <MinimizeTwoTone />
+                    {/* <Add /> */}
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    {/* <Remove /> */}
+                    <MinimizeTwoTone />
+                    <DeleteForeverOutlined onClick={() => handleClick(product._id)} />
                   </ProductAmountContainer>
                   <ProductPrice>
                     $ {product.price * product.quantity}
@@ -292,23 +249,17 @@ const handleClick = (id) => {
             ))}
             <Hr />
           </Info>
-		  {/* Summary-ամփոփում */}
           <Summary>
-          {/* ORDER SUMMARY-ՊԱՏՎԵՐԻ ԱՄՓՈՓՈՒՄ */}
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
-            {/* Subtotal-Ենթագումար */}
               <SummaryItemText>Subtotal</SummaryItemText>
-              {/* {cart.total}-ը զամբյուղում գտնվող ապրանքների ընդհանուր արժեքն է */}
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-            {/* Estimated Shipping-Մոտավոր առաքում */}
               <SummaryItemText>Estimated Shipping</SummaryItemText>
               <SummaryItemPrice>$ 7.60</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-            {/* Shipping Discount-Առաքման զեղչ */}
               <SummaryItemText>Shipping Discount</SummaryItemText>
               <SummaryItemPrice>$ -7.60</SummaryItemPrice>
             </SummaryItem>
@@ -322,11 +273,10 @@ const handleClick = (id) => {
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}
-              amount={cart.total * 100}//այստեղ բազմապատկում ենք 100-ով քանի որ եթե օրինակ գրենք {100} սա կնշանակի 1$, դրա համար ենք բազմապատկում 100-ով
+              amount={cart.total * 100}
               token={onToken}
-              stripeKey={KEY}
-            >
-              <Button>CHECKOUT NOW</Button>
+              stripeKey={KEY}    >
+              <Button >CHECKOUT NOW</Button>
             </StripeCheckout>
           </Summary>
         </Bottom>
