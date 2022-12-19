@@ -25,6 +25,7 @@ This project was created for online trading of clothes. The project is mainly bu
 .cart creation
 .Օnline purchase of products(Stripe payments)
 .Possibility of electronic notification to the customer about new products(Nodemailer)
+.The site is responsive
 
 Installing
 
@@ -42,7 +43,6 @@ You may also see any lint errors in the console.
  
 Author
 Armen Martirosyan
-
 
 - https://github.com/Armen-Martirosyan3000
 - martirosyana268@gmail.com
