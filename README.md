@@ -1,15 +1,15 @@
 EcommerceFrontend
 
 <div align="center">
-  <img alt="Demo" src="./src/Image/1.png" />
+  <img alt="Demo" src="./src/image/profile/1.png" />
 </div>
 
 <div align="center">
-  <img alt="Demo" src="./src/Image/2.png" />
+  <img alt="Demo" src="./src/image/profile/2.png" />
 </div>
 
 <div align="center">
-  <img alt="Demo" src="./src/Image/3.png" />
+  <img alt="Demo" src="./src/image/profile/3.png" />
 </div>
 
 Description
