@@ -49,7 +49,7 @@ Open the project folder and Navigate to /src/components/.
 You will find all the components used and you can edit your information accordingly.
  
 ## Author
-<h3>Armen Martirosyan</h3>
+<h4>Armen Martirosyan</h4>
 
 - https://github.com/Armen-Martirosyan3000
 - martirosyana268@gmail.com
