@@ -17,7 +17,7 @@ This project was created for online trading of clothes. The project is mainly bu
  <div>
 The project consists of a home page, from which an opportunity is created for the user to log in and register. The site allows you to get to know the products by category and buy online through the stripe system
  </div>
- 
+
 ## Features
 
 * User registration
@@ -49,7 +49,7 @@ Open the project folder and Navigate to /src/components/.
 You will find all the components used and you can edit your information accordingly.
  
 ## Author
-Armen Martirosyan
+<h3>Armen Martirosyan</h3>
 
 - https://github.com/Armen-Martirosyan3000
 - martirosyana268@gmail.com
