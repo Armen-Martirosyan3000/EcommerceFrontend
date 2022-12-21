@@ -35,6 +35,7 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 400;
+  ${mobile({ margin: "8px 10px 0px 0px"})}
 `;
 
 const Form = styled.form`
@@ -47,6 +48,7 @@ const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  ${mobile({ margin: "8px 10px 0px 0px"})}
 `;
 
 const Agreement = styled.span`
