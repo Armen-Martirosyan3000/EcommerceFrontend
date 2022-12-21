@@ -45,6 +45,7 @@ const TopButton = styled.button`
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
   color: ${(props) => props.type === "filled" && "white"};
+  ${mobile({ display: "none" })} 
 `;
 
 // const TopTexts = styled.div`
@@ -89,9 +90,13 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 
-const ProductName = styled.span``;
+const ProductName = styled.span`
+${mobile({ fontSize: "100%" })}
+`;
 
-const ProductId = styled.span``;
+const ProductId = styled.span`
+${mobile({ fontSize: "70%" })}
+`;
 
 const ProductColor = styled.div`
   width: 20px;
@@ -196,7 +201,7 @@ const Cart = () => {
     };
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, navigate]);
-  
+
   return (
     <Container>
       <Navbar />

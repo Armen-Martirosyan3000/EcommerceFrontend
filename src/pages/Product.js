@@ -28,9 +28,8 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 90vh;
-  object-fit: cover;
-  ${mobile({ height: "40vh" })}
+  height: 70vh;
+  object-fit: contain;
 `;
 
 const InfoContainer = styled.div`

@@ -23,12 +23,11 @@ const Container = styled.div`
 //Footer Left
 
 const Left = styled.div`
-	flex: 1;#DBFAFD
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
 	${mobile({ backgroundColor: "white" })}
-	
   `;
 
 const Logo = styled.h1`
