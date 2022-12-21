@@ -72,7 +72,6 @@ const Newsletter = () => {
       })
     });
     const data = await res.json();
-    console.log(data)
     if (data.status === 401 || !data) {
       console.log("Something went wrong...")
     } else {

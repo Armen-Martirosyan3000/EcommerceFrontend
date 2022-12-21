@@ -1,5 +1,5 @@
 <div align="center">
-<h2 tex>EcommerceFrontend</h2>
+<h2>EcommerceFrontend</h2>
 <img alt="Demo" src="./src/image/profile/1.png" />
 <img alt="Demo" src="./src/image/profile/2.png" />
 <img alt="Demo" src="./src/image/profile/3.png" />
@@ -13,9 +13,8 @@ This project was created for online trading of clothes. The project is mainly bu
  * Styled-components 
  * UI Material
  * Stripe payments
- * Nodemailer
  <div>
-The project consists of a home page, from which an opportunity is created for the user to log in and register. The site allows you to get to know the products by category and buy online through the stripe system
+The project consists of a home page, from where there a user can log in and register. The site allows you to get to know the products by category and buy online through the stripe system
  </div>
 
 ## Features
@@ -24,7 +23,7 @@ The project consists of a home page, from which an opportunity is created for th
 * User login
 * User upload
 * Selection of products
-* cart creation
+* Cart creation
 * Օnline purchase of products(Stripe payments)
 * Possibility of electronic notification to the customer about new products(Nodemailer)
 * Fully Responsive
