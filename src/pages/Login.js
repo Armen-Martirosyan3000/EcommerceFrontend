@@ -29,12 +29,13 @@ const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
   background-color: white;
-  ${mobile({ width: "75%", backgroundSize: "50%" })}
+  ${mobile({ width: "75%"})}
 `;
 
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 400;
+  ${mobile({ margin: "2px 0px 3px 8px" })}
 `;
 
 const Form = styled.form`
@@ -47,6 +48,7 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
+  ${mobile({ margin: "5px 0px 5px 0px" })}
 `;
 
 const Button = styled.button`

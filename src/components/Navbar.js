@@ -1,5 +1,5 @@
 import { Badge } from "@material-ui/core";
-import { ShoppingCartOutlined } from "@material-ui/icons";//Search
+import { ShoppingCartOutlined,Search } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
@@ -42,18 +42,18 @@ const Left = styled.div`
 // `;
 
 //SearchContainer
-// const SearchContainer = styled.div`
-//   border: 0.5px solid lightgray;
-//   display: flex;
-//   align-items: center;
-//   margin-left: 25px;
-//   padding: 5px;
-// `;
+const SearchContainer = styled.div`
+  border: 0.5px solid lightgray;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  padding: 5px;
+`;
 
-// const Input = styled.input`
-//   border: none;
-//   ${mobile({ width: "35px" })}
-// `;
+const Input = styled.input`
+  border: none;
+  ${mobile({ width: "25px",fontSize:"8px"})}
+`;
 
 
 //Navbar Center
@@ -61,14 +61,14 @@ const Left = styled.div`
 const Center = styled.div`
   flex: 1;
   text-align: center;
-  ${mobile({ marginLeft: "2px" })}
+  ${mobile({ marginLeft: "1px" })}
 `;
 
 const Logo = styled.h1`
   font-weight: bold;
     color: #6550FF;
    font-size:45px;
-  ${mobile({ fontSize: "24px" })}
+  ${mobile({ fontSize: "18px" })}
 `;
 
 //Navbar Right
@@ -98,7 +98,6 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser)
 
   const navigate = useNavigate()
-  console.log(user, "user")
   const handleClick = (e) => {
     e.preventDefault();
     logout(dispatch);
@@ -111,10 +110,10 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           {/* <Language>EN</Language> */}
-          {/* <SearchContainer> */}
-          {/* <Input placeholder="Search" /> */}
-          {/* <Search style={{ color: "gray", fontSize: 16, "margin-left": 5}} /> */}
-          {/* </SearchContainer>  */}
+          <SearchContainer>
+          <Input placeholder="Search" />
+          <Search style={{ color: "gray", fontSize: 15, "margin-left": 5}} />
+          </SearchContainer> 
         </Left>
         <Center>
           <Logo>KAGADA</Logo>

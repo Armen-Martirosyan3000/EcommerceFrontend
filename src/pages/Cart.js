@@ -179,7 +179,6 @@ const Cart = () => {
   const navigate = useNavigate()
 
   const onToken = (token) => {
-    console.log("onToken")
     setStripeToken(token);
     dispatch(resetCart())
   };

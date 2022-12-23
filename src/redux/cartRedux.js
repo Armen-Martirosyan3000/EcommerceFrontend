@@ -31,7 +31,6 @@ const cartSlice = createSlice({
     //Reducer deleteProduct
     deleteProduct: (state, action) => {
       state.quantity -= 1;
-      console.log(state.products, action)
       state.products = state.products.filter((item) => item._id !== action.payload);
 
       state.total = state.products.reduce(
@@ -43,7 +42,6 @@ const cartSlice = createSlice({
     //Reducer resetCart
     resetCart: (state, action) => {
       state.quantity = 0;
-      console.log(state.products, action)
       state.total = 0;
       state.products = [];
     },

@@ -31,7 +31,6 @@ export const login = async (dispatch, user) => {
 //Logout
 
 export const logout = async (dispatch, user) => {
-  console.log(222)
   dispatch(logoutStart());
 };
 

@@ -30,6 +30,7 @@ const Image = styled.img`
   width: 100%;
   height: 70vh;
   object-fit: contain;
+  ${mobile({ height: "40vh"})}
 `;
 
 const InfoContainer = styled.div`
@@ -56,7 +57,7 @@ const FilterContainer = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  ${mobile({ width: "50%" })}
 `;
 
 const Filter = styled.div`
@@ -81,6 +82,7 @@ const FilterColor = styled.div`
 const FilterSize = styled.select`
   margin-left: 10px;
   padding: 5px;
+  ${mobile({ margin: "7px 15px 5px 10px" })}
 `;
 
 const FilterSizeOption = styled.option``;
