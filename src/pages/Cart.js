@@ -169,7 +169,6 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
   cursor:pointer
-  
 `;
 
 const Cart = () => {

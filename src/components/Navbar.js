@@ -1,5 +1,5 @@
 import { Badge } from "@material-ui/core";
-import { ShoppingCartOutlined,Search } from "@material-ui/icons";
+import { ShoppingCartOutlined, Search } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
@@ -52,7 +52,7 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
-  ${mobile({ width: "25px",fontSize:"8px"})}
+  ${mobile({ width: "25px", fontSize: "8px" })}
 `;
 
 
@@ -91,7 +91,7 @@ const MenuItem = styled.div`
 const Navbar = () => {
   const dispatch = useDispatch();
   const quantity = useSelector(state => state.cart.quantity)
-  const isEmpty = function (obj) {  
+  const isEmpty = function (obj) {
     return Object.keys(obj).length === 0;
   }
 
@@ -111,9 +111,9 @@ const Navbar = () => {
         <Left>
           {/* <Language>EN</Language> */}
           <SearchContainer>
-          <Input placeholder="Search" />
-          <Search style={{ color: "gray", fontSize: 15, "margin-left": 5}} />
-          </SearchContainer> 
+            <Input placeholder="Search" />
+            <Search style={{ color: "gray", fontSize: 15, "margin-left": 5 }} />
+          </SearchContainer>
         </Left>
         <Center>
           <Logo>KAGADA</Logo>

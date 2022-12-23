@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import Newsletter from "../components/Newsletter";
 import Slider from '../components/Slider';
 import Products from "../components/Products";
-import { useEffect} from "react";
+import { useEffect } from "react";
 
 
 //Home page
