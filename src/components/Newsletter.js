@@ -61,6 +61,7 @@ const Button = styled.button`
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [show, setShow] = useState(false);
+  
   const sendEmail = async (e) => {
     e.preventDefault();
     const res = await fetch(`${BASE_URL}mail/news`, {

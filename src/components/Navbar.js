@@ -90,21 +90,23 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const quantity = useSelector(state => state.cart.quantity)
+  const quantity = useSelector(state => state.cart.quantity);
+
   const isEmpty = function (obj) {
-    return Object.keys(obj).length === 0;
-  }
+    return Object.keys(obj).length === 0
+  };
 
-  const user = useSelector((state) => state.user.currentUser)
+  const user = useSelector((state) => state.user.currentUser);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const handleClick = (e) => {
     e.preventDefault();
     logout(dispatch);
     navigate("/login")
     dispatch(resetCart());
-
   };
+
   return (
     <Container>
       <Wrapper>

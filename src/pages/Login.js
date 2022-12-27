@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 400;
-  ${mobile({ margin: "2px 0px 3px 8px" })}
+  ${mobile({ margin: "5px 0px 3px 8px" })}
 `;
 
 const Form = styled.form`
@@ -48,7 +48,7 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
-  ${mobile({ margin: "5px 0px 5px 0px" })}
+  ${mobile({ margin: "8px" })}
 `;
 
 const Button = styled.button`
@@ -64,6 +64,7 @@ const Button = styled.button`
     color: green;
     cursor: not-allowed;
   }
+  ${mobile({ marginLeft: "8px" })}
 `;
 
 const Link = styled.a`

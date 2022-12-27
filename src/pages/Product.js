@@ -82,7 +82,7 @@ const FilterColor = styled.div`
 const FilterSize = styled.select`
   margin-left: 10px;
   padding: 5px;
-  ${mobile({ margin: "7px 15px 5px 10px" })}
+
 `;
 
 const FilterSizeOption = styled.option``;
@@ -181,7 +181,7 @@ const Product = () => {
               ))}
             </Filter>
             <Filter>
-              <FilterTitle>Size</FilterTitle>
+              <FilterTitle style={{marginLeft:"138px"}}>Size</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {product.size?.map((s) => (
                   <FilterSizeOption key={s}>{s}</FilterSizeOption>
