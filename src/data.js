@@ -46,7 +46,7 @@ export const categories = [
   },
   {
     id: 3,
-    img: "http://cdn.shopify.com/s/files/1/0289/9781/products/new-color-ultimate-denim-jacket-12543521259602_1000x_1442f4f3-1678-4cbf-9dd4-533ecfe8f265_grande.jpg?v=1644251320",
+    img: "https://m.media-amazon.com/images/I/91Z0-ZgmqGL._AC_UX569_.jpg",
     title: "JEANS",
     cat: "jeans"
   },
