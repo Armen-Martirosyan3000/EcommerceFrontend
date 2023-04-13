@@ -4,7 +4,7 @@ import { mobile } from "../responsive";
 import CategoryItem from "./CategoryItem";
 
 
-//Structure of 3 product categories
+// Structure of 3 product categories
 
 const Container = styled.div`
   display: flex;

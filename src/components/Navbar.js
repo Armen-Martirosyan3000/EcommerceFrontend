@@ -10,7 +10,7 @@ import { resetCart } from "../redux/cartRedux";
 import { useNavigate } from "react-router-dom";
 
 
-//Navbar
+// Navbar
 
 const Container = styled.div`
   height: 60px;
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   ${mobile({ padding: "10px 0px" })}
 `;
 
-//Navbar Left
+// Navbar Left
 
 const Left = styled.div`
   flex: 1;
@@ -34,14 +34,14 @@ const Left = styled.div`
 `;
 
 
-//Language
-// const Language = styled.span`
-//   font-size: 15px;
-//   cursor: pointer;
-//   ${mobile({ display: "none" })}
-// `;
+// Language
+const Language = styled.span`
+  font-size: 15px;
+  cursor: pointer;
+  ${mobile({ display: "none" })}
+`;
 
-//SearchContainer
+// SearchContainer
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
@@ -56,7 +56,7 @@ const Input = styled.input`
 `;
 
 
-//Navbar Center
+// Navbar Center
 
 const Center = styled.div`
   flex: 1;
@@ -71,7 +71,7 @@ const Logo = styled.h1`
   ${mobile({ fontSize: "18px" })}
 `;
 
-//Navbar Right
+// Navbar Right
 
 const Right = styled.div`
   flex: 1;
@@ -111,7 +111,7 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          {/* <Language>EN</Language> */}
+          <Language>EN</Language>
           <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 15, "margin-left": 5 }} />

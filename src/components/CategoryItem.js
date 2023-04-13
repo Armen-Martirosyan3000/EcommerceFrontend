@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 
 
-//CategoryItem is a child component of the Сategories component
+// 
 
 const Container = styled.div`
   flex: 1;
