@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 
 
-//Footer 
+// Footer 
 
 const Container = styled.div`
 	display: flex;
@@ -20,7 +20,7 @@ const Container = styled.div`
   `;
 
 
-//Footer Left
+// Footer Left
 
 const Left = styled.div`
 	flex: 1;
@@ -59,7 +59,7 @@ const SocialIcon = styled.div`
 	margin-right: 20px;
   `;
 
-//Footer Center
+// Footer Center
 
 const Center = styled.div`
 	flex: 1;
@@ -86,7 +86,7 @@ const ListItem = styled.li`
 	margin-bottom: 10px;
   `;
 
-//Footer Right
+// Footer Right
 
 const Right = styled.div`
 	flex: 1;
